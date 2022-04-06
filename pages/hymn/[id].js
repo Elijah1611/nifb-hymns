@@ -15,17 +15,27 @@ const Hymn = () => {
 
   return (
     selectedSong && (
-      <div className="flex flex-col justify-center items-center mx-4">
+      <div className="flex flex-col md:items-center mx-4">
         <h1 className="text-3xl my-10">
-          #{selectedSong[0]?.number} - {selectedSong[0]?.name}
+          <span className="opacity-40">#{selectedSong[0]?.number}</span>
+          <br />
+          {selectedSong[0]?.name}
         </h1>
+        <h2 className="mb-2 text-xl font-bold">
+          {selectedSong[0]?.chorus.length > 0 && "Chorus"}
+        </h2>
+        {selectedSong[0]?.chorus.length > 0 && (
+          <div className="mb-10">
+            {selectedSong.map((song) => {
+              return song.chorus.map((verse, idx) => (
+                <p key={idx} className="text-xs md:text-base">
+                  {verse}
+                </p>
+              ));
+            })}
+          </div>
+        )}
 
-        <h2 className="mb-2 text-xl font-bold">Chrous</h2>
-        <div className="mb-10">
-          {selectedSong.map((song) => {
-            return song.chorus.map((verse, idx) => <p key={idx}>{verse}</p>);
-          })}
-        </div>
         <h2 className="mb-2 text-xl font-bold">Verses</h2>
         <div className="mb-10">
           {songs
@@ -47,7 +57,7 @@ const Hymn = () => {
             })}
         </div>
         <Link href="/" passhref>
-          <a>Back</a>
+          <a className="text-center">Back</a>
         </Link>
       </div>
     )

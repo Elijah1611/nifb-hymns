@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <section className="flex flex-col justify-center items-center gap-10 my-20">
+        <section className="flex flex-col justify-center items-center gap-5 my-20">
           {songs.map((song) => {
             return (
               <Link key={song.number} href={`/hymn/${song.number}`}>
